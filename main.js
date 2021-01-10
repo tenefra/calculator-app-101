@@ -5,12 +5,12 @@ let secondNum = null
 let operation = null
 
 // this function takes in the number you type in the input field and saves it to the "firstNum" variable
-const saveFirstNumber = (num) => {
-  firstNum = parseInt(num)  
+const saveFirstNumber = num => {
+  firstNum = parseInt(num)
 }
 
 // this function takes in the number you type in the 2nd input field and saves it to the "secondNum" variable
-const saveSecondNumber = (num) => {
+const saveSecondNumber = num => {
   // "parseInt" is a built in function in JS that converts a string/word into a number
   secondNum = parseInt(num)
 }
@@ -31,46 +31,63 @@ const subtract = (numA, numB) => {
 
 const multiply = (numA, numB) => {
   // * to get a product then return it
+  const product = numA * numB
+  return product
   // Open up the inspector tool in Chrome and select the Console tab to see what this functions is "logging out" to the console.
-  console.log(numA, numB)
+  console.log(product)
 }
 
-const divide = null
+const divide = (numA, numB) => {
+  const quotient = numA / numB
+  return quotient
+}
 // / to get a quotient,
 
-const modulus = null
+const modulus = (numA, numB) => {
+  const remainder = numA % numB
+  return remainder
+}
+
 // and % to get a remainder.
 
 // This function changes the "operation" variable to be equal to the "id" of the button we choose on the web page.
-const changeOperation = (chosenOperation) => {
+const changeOperation = chosenOperation => {
   operation = chosenOperation
   // Use your Chrome Inspector Tool > Console Tab to see the "operation" that's logged
   console.log(operation)
 }
 
 // In order to show the user their results we have to access the DOM and stick in the value
-const putResultInElement = (operationResults) => {
+const putResultInElement = operationResults => {
   // access the DOM by writing "document" then use the method "getElementById" and pass it the id, "result".
   document.getElementById("result").innerHTML = "Results: " + operationResults
 
-  // Remember, each element has built in properties like "innerHTML" which we can change to anything we like. 
+  // Remember, each element has built in properties like "innerHTML" which we can change to anything we like.
   // Here we give it a string: "Results: " and add the value of the operation to it.
 }
 
 // The function uses the value of "operation" variable to determine which operation function it should use on the number: add, subtract, multiply, divide, or modulus
 const equals = () => {
   switch (operation) {
-    case "addition":  putResultInElement(add(firstNum, secondNum)) 
-    break;
-    case "subtraction": putResultInElement(subtract(firstNum, secondNum)) 
-    break;
-    case "multiplication": multiply(firstNum, secondNum) 
-    break;
-    case "division": console.log(divide(firstNum, secondNum)) 
-    break;
-    case "modulus": console.log(modulus(firstNum, secondNum)) 
-    break;
-    default: "Choose an operation"
+    case "addition":
+      putResultInElement(add(firstNum, secondNum))
+      break
+    case "subtraction":
+      putResultInElement(subtract(firstNum, secondNum))
+      break
+    case "multiplication":
+      putResultInElement(multiply(firstNum, secondNum))
+      console.log(multiply(firstNum, secondNum))
+      break
+    case "division":
+      putResultInElement(divide(firstNum, secondNum))
+      console.log(divide(firstNum, secondNum))
+      break
+    case "modulus":
+      putResultInElement(modulus(firstNum, secondNum))
+      console.log(modulus(firstNum, secondNum))
+      break
+    default:
+      "Choose an operation"
   }
 }
-
